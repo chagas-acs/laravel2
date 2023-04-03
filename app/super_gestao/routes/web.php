@@ -29,3 +29,10 @@ Route::get('/sobre-nos', [ \App\Http\Controllers\SobreNosController::class, 'sob
 
 //Rota Contato
 Route::get('/contato', [ \App\Http\Controllers\ContatoController::class, 'contato']);
+
+
+//Rota passando paramentros (nome,categoria,assunto,mensagem)
+// O caracter "?", define que o parametro não é obrigatório
+Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem?}', function(string $nome, string $categoria, string $assunto, string $mensagem = "mensagem não fornecida") {
+    echo 'Estamos aqui: '.$nome.'  '.$categoria.'  '.$assunto.'  '.$mensagem;
+});
