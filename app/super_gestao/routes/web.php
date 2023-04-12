@@ -22,13 +22,26 @@ Route::get('/', function () {
 //Route::get('/', 'PrincipalController@principal');
 
 //Laravel 8 em diante
-Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal']);
+Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index');
 
 //Rota sobre-nos
-Route::get('/sobre-nos', [ \App\Http\Controllers\SobreNosController::class, 'sobreNos']);
+Route::get('/sobre-nos', [ \App\Http\Controllers\SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 
 //Rota Contato
-Route::get('/contato', [ \App\Http\Controllers\ContatoController::class, 'contato']);
+Route::get('/contato', [ \App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
+
+
+Route::get('/login', function () {    
+    return('Login');
+});
+
+//Rotas agrupadas
+Route::prefix('/app')->group(function() {
+    Route::get('/clientes', function () { return('Clientes'); })->name('app.clientes');
+    Route::get('/fornecedores', function () { return('Fornecedores'); })->name('app.fornecedores');
+    Route::get('/produtos', function () { return('Produtos'); })->name('app.produtos');
+});
+
 
 
 //Rota passando paramentros (nome,categoria,assunto,mensagem)
